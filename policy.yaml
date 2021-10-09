@@ -1,0 +1,13 @@
+apiVersion: kritis.grafeas.io/v1beta1
+kind: VulnzSigningPolicy
+metadata:
+  name: datatonic-container-security
+spec:
+  imageVulnerabilityRequirements:
+    maximumFixableSeverity: MEDIUM
+    maximumUnfixableSeverity: HIGH
+allowlistCVEs:
+    - projects/goog-vulnz/notes/CVE-2021-20305
+    - projects/goog-vulnz/notes/CVE-2020-10543
+    - projects/goog-vulnz/notes/CVE-2020-10878
+    - projects/goog-vulnz/notes/CVE-2020-14155
