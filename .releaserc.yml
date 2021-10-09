@@ -6,4 +6,3 @@ plugins:
 - "@semantic-release/gitlab"
 branches:
 - "main"
-- "feature/api-v1"

@@ -1,28 +1,28 @@
 image: python:3.9.5-slim
 
 stages:
-  # - test
+  - test
   - release
 
-# coverage:
-#   stage: test
-#   image: python:3.9.5-slim-buster
-#   before_script:
-#     - pip install --upgrade pip
-#     - pip install poetry
-#     - poetry install
-#     - export PYTHONPATH="$PYTHONPATH:$(pwd)"
-#   script:
-#     - poetry run pytest --cov=src tests/
+coverage:
+  stage: test
+  image: python:3.9.5-slim-buster
+  before_script:
+    - pip install --upgrade pip
+    - pip install poetry
+    - poetry install
+    - export PYTHONPATH="$PYTHONPATH:$(pwd)"
+  script:
+    - poetry run pytest --cov=src tests/
 
-# pre-commit:
-#   stage: test
-#   before_script:
-#     - apt update && apt install -y git
-#     - pip install --upgrade pip
-#     - pip install --upgrade pre-commit 
-#   script: 
-#     - pre-commit run --all-files
+pre-commit:
+  stage: test
+  before_script:
+    - apt update && apt install -y git
+    - pip install --upgrade pip
+    - pip install --upgrade pre-commit 
+  script: 
+    - pre-commit run --all-files
 
 # Pre-requisite for release: `npx semantic-release-cli setup`
 release:
@@ -33,6 +33,6 @@ release:
     - npm install -g semantic-release @semantic-release/exec @semantic-release/gitlab
   script:
     - npx semantic-release
-  # only:
-  #   refs:
-  #   - main
+  only:
+    refs:
+    - main
