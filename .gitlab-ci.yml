@@ -10,6 +10,7 @@ coverage:
   before_script:
     - pip install --upgrade pip
     - pip install poetry
+    - poetry install
     - export PYTHONPATH="$PYTHONPATH:$(pwd)"
   script:
     - poetry run pytest --cov=src tests/
