@@ -13,3 +13,5 @@ __pypackages__
 .vscode
 .idea
 node_modules/
+
+tmp.*

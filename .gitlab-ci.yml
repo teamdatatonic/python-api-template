@@ -26,7 +26,7 @@ pre-commit:
 
 # Pre-requisite for release: `npx semantic-release-cli setup`
 release:
-  image: node:13
+  image: node:14
   stage: release
   script:
     - npm install @semantic-release/gitlab @semantic-release/exec
