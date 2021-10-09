@@ -34,8 +34,8 @@ image-build:
     - gcloud auth activate-service-account --key-file=key.json
   script:
     - gcloud builds submit --project=datatonic-devops-play --config=cloudbuild/container_build.yml --timeout=3600 --substitutions=_IMAGE_VERSION=${CI_COMMIT_SHORT_SHA}
-  # only:
-  #   - main
+  only:
+    - main
 
 # Pre-requisite for release CI Variable: GITLAB_TOKEN
 release:
