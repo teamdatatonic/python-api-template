@@ -9,11 +9,11 @@ coverage:
   image: python:3.9.5-slim-buster
   before_script:
     - pip install --upgrade pip
-    - pip install pdm
-    - pdm install
-  script:
+    - pip install poetry
+    - poetry install
     - export PYTHONPATH="$PYTHONPATH:$(pwd)"
-    - pdm run pytest --cov=main tests/
+  script:
+    - poetry run pytest --cov=src tests/
 
 pre-commit:
   stage: test
@@ -24,12 +24,15 @@ pre-commit:
   script: 
     - pre-commit run --all-files
 
+# Pre-requisite for release: `npx semantic-release-cli setup`
 release:
-  image: node:13
+  image: node:14
   stage: release
+  before_script:    
+    - apt-get update && apt-get install -y --no-install-recommends git-core ca-certificates
+    - npm install -g semantic-release @semantic-release/exec @semantic-release/gitlab
   script:
-    - npm install @semantic-release/gitlab @semantic-release/exec
     - npx semantic-release
   only:
     refs:
-    - master
+    - main
