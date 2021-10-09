@@ -1,0 +1,13 @@
+[run]
+branch = True
+source = .
+omit =
+    *test*
+    *.venv*
+
+[report]
+fail_under = 80
+show_missing = True
+exclude_lines = if __name__ == .__main__.:
+omit =
+    *.venv*

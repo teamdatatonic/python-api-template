@@ -1,0 +1,35 @@
+image: python:3.9.5-slim
+
+stages:
+  - test
+  - release
+
+coverage:
+  stage: test
+  image: python:3.9.5-slim-buster
+  before_script:
+    - pip install --upgrade pip
+    - pip install pdm
+    - pdm install
+  script:
+    - export PYTHONPATH="$PYTHONPATH:$(pwd)"
+    - pdm run pytest --cov=main tests/
+
+pre-commit:
+  stage: test
+  before_script:
+    - apt update && apt install -y git
+    - pip install --upgrade pip
+    - pip install --upgrade pre-commit 
+  script: 
+    - pre-commit run --all-files
+
+release:
+  image: node:13
+  stage: release
+  script:
+    - npm install @semantic-release/gitlab @semantic-release/exec
+    - npx semantic-release
+  only:
+    refs:
+    - master
