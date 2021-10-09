@@ -9,11 +9,10 @@ coverage:
   image: python:3.9.5-slim-buster
   before_script:
     - pip install --upgrade pip
-    - pip install pdm
-    - pdm install
-  script:
+    - pip install poetry
     - export PYTHONPATH="$PYTHONPATH:$(pwd)"
-    - pdm run pytest --cov=main tests/
+  script:
+    - poetry run pytest --cov=src tests/
 
 pre-commit:
   stage: test
@@ -30,6 +29,6 @@ release:
   script:
     - npm install @semantic-release/gitlab @semantic-release/exec
     - npx semantic-release
-  only:
-    refs:
-    - master
+  # only:
+  #   refs:
+  #   - main

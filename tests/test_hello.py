@@ -1,4 +1,4 @@
-from main.hello import hello
+from src.hello import hello
 import unittest
 
 

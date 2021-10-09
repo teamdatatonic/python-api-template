@@ -1,3 +1,5 @@
+from src.hello import hello
+
 import flask
 import logging
 import os
@@ -16,13 +18,13 @@ app = flask.Flask(__name__)
 # Endpoints
 #######################################
 
-@app.endpoint("model_serve")
-def model_serve() -> tuple:
-    logging.info(f"model_serve Stub")
+@app.endpoint("API_serve")
+def api_serve() -> tuple:
+    logging.info(f"API_serve Stub")
 
     # TODO: plug in request to Vertex Serving API here :) 
 
-    return flask.jsonify({"response": {}})
+    return flask.jsonify({"response": {"message": hello()}})
 
 
 
@@ -30,14 +32,14 @@ def model_serve() -> tuple:
 # Routes
 #######################################
 
-# Model Serve
-if os.getenv("MODEL_SERVE_ENABLED", "false").lower() == "true":
-    api_route_name:str = os.getenv('MODEL_SERVE_ROUTE', '/api/v1/model-serve')
-    app.logger.info("Enabling Model Serve Endpoint")
+# API Serve
+if os.getenv("API_SERVE_ENABLED", "false").lower() == "true":
+    api_route_name:str = os.getenv('API_SERVE_ROUTE', '/api/v1/serve')
+    app.logger.info("Enabling API Serve Endpoint")
     app.add_url_rule(
         api_route_name, 
         methods=['POST'],
-        endpoint="model_serve"
+        endpoint="API_serve"
     )
 
 # Health check
