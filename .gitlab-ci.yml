@@ -2,6 +2,7 @@ image: python:3.9.5-slim
 
 stages:
   - test
+  - image_build
   - release
 
 coverage:
@@ -24,7 +25,19 @@ pre-commit:
   script: 
     - pre-commit run --all-files
 
-# Pre-requisite for release: `npx semantic-release-cli setup`
+image-build:
+  stage: image_build
+  image: google/cloud-sdk
+  retry: 2
+  before_script:
+    - echo ${GCP_CREDENTIALS} > key.json
+    - gcloud auth activate-service-account --key-file=key.json
+  script:
+    - gcloud builds submit --project=datatonic-devops-play --config=cloudbuild/container_build.yml --timeout=3600 --substitutions=_IMAGE_VERSION=${CI_COMMIT_SHORT_SHA}
+  # only:
+  #   - main
+
+# Pre-requisite for release CI Variable: GITLAB_TOKEN
 release:
   image: node:14
   stage: release
