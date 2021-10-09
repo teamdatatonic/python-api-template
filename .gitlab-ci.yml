@@ -24,6 +24,7 @@ pre-commit:
   script: 
     - pre-commit run --all-files
 
+# Pre-requisite for release: `npx semantic-release-cli setup`
 release:
   image: node:13
   stage: release

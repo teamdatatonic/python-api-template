@@ -5,4 +5,5 @@ plugins:
   - verifyReleaseCmd: "echo ${nextRelease.version} > VERSION.txt"
 - "@semantic-release/gitlab"
 branches:
-- "master"
+- "main"
+- "feature/api-v1"
