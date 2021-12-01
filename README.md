@@ -13,6 +13,8 @@ Can be productionised on any compute that allows containers.
 Click "Open in Cloud Shell" for a tutorial on how to get started with FastAPI  
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/teamdatatonic/python-api-template)
 
+Once in the cloud shell, run the command: `teachme tutorial.md` if it doesn't automatically open. 
+
 
 ### Setup Your Python Environment
 ```
