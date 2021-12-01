@@ -20,7 +20,7 @@ RUN poetry install --no-dev
 # Copy the rest of project files
 COPY . $APP_HOME/
 
-ENV PORT 8000
+ENV PORT 5000
 
 # Run the web service on container startup.
 # Use uvicorn webserver with one worker process and 8 threads.
@@ -28,4 +28,4 @@ ENV PORT 8000
 # to be equal to the cores available.
 # Timeout is set to 0 to disable the timeouts of the workers to allow Cloud Run
 # to handle instance scaling.
-CMD uvicorn --host 0.0.0.0 main:app --port $PORT
+CMD uvicorn --host 0.0.0.0 api:app --port $PORT
