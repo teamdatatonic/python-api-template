@@ -1,14 +1,13 @@
 [tool.poetry]
-name = "vertex-serving-api"
+name = "fastapi-template"
 version = "0.1.0"
 description = ""
 authors = ["Simon Butt <simon.butt@datatonic.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-Flask = "^2.0.2"
-pytest-cov = "^3.0.0"
-gunicorn = "^20.1.0"
+fastapi = "^0.70.0"
+uvicorn = "^0.15.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.9b0"

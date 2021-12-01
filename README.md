@@ -1,8 +1,9 @@
 # Python Flask Api
 
-Python Flask API Template
+Python Fast API Template
 
-Can be use on any compute that allows containers :)
+Can be use on any compute that allows containers.
+
 Contains:
 - Dockerfile
 - CICD
